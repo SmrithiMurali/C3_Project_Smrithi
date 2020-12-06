@@ -9,6 +9,10 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    private List<String> selectedItemNames = new ArrayList<String>(){{
+        add("Lemon Tea");
+        add("Green Tea");
+    }};
 
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
@@ -62,6 +66,16 @@ public class Restaurant {
                 +"Closing time:"+ closingTime +"\n"
                 +"Menu:"+"\n"+getMenu());
 
+    }
+    public int getTotalPrice(List<String> selectedItemNames){
+        int sum = 0;
+        for ( String itemName: selectedItemNames) {
+            for(Item item:getMenu()){
+                if(itemName.equals(item.getName()))
+                    sum += item.getPrice();
+            }
+        }
+        return sum;
     }
 
     public String getName() {
