@@ -79,5 +79,20 @@ class RestaurantTest {
                 ()->this.restaurant.removeFromMenu("French fries"));
     }
 
+    @Test
+    public void should_get_total_price_of_selected_menu() {
+
+        this.restaurant.addToMenu("Juice",119);
+        this.restaurant.addToMenu("Vegetable Pizza", 269);
+
+        List<String> selectedItemNames = new ArrayList<String>(){{
+            add("Juice");
+            add("Vegetable Pizza");
+        }};
+        int price = this.restaurant.getTotalPrice(selectedItemNames);
+
+        assertEquals(price,388);
+
+    }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
